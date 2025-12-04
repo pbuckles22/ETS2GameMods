@@ -1,0 +1,20 @@
+Example Mod for Euro Truck Simulator 2
+=======================================
+
+This is an example mod template that demonstrates the correct file structure
+for creating ETS2 mods.
+
+Features:
+- Template structure for creating your own mods
+- Organized folder layout
+
+Installation:
+1. Copy the .scs file to your ETS2 mod folder:
+   Documents/Euro Truck Simulator 2/mod/
+2. Enable the mod in the game's Mod Manager
+
+Credits:
+- Created using the ETS2GameMods template
+
+Version History:
+- 1.0.0: Initial release

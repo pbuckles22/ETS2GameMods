@@ -1,0 +1,17 @@
+SiiNunit
+{
+    mod_package : .example_mod
+    {
+        package_version: "1.0.0"
+        display_name: "Example Mod"
+        author: "Your Name"
+        category[]: "other"
+        description_file: "desc.txt"
+        icon: "icon.jpg"
+        compatible_versions[]: "1.48.*"
+        compatible_versions[]: "1.49.*"
+        compatible_versions[]: "1.50.*"
+        compatible_versions[]: "1.51.*"
+        compatible_versions[]: "1.52.*"
+    }
+}
