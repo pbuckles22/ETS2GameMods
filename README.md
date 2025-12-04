@@ -10,12 +10,22 @@ A repository for creating and managing Euro Truck Simulator 2 mods.
 | [Step-by-Step Guide](docs/STEP_BY_STEP_GUIDE.md) | Create your first mod with detailed instructions |
 | [SII Format Reference](docs/SII_FORMAT_REFERENCE.md) | Complete SII syntax and examples |
 | [Testing Guide](docs/TESTING_GUIDE.md) | How to test mods (spoiler: in-game testing required!) |
+| [Advanced Modding](docs/ADVANCED_MODDING.md) | C++ DLL modding guide for advanced features |
+| [Git Workflow](docs/GIT_WORKFLOW.md) | Git workflow and branch strategy for mod development |
 
 ## 🎮 Quick Facts
 
-- **No C++ or traditional programming required!** ETS2 uses SII format (text-based config)
+- **No C++ or traditional programming required!** ETS2 uses SII format (text-based config) for standard mods
 - **Testing is done in-game** - TDD doesn't apply to ETS2 modding
 - **You only need folders for your content type** - Simple mods need minimal structure
+- **Advanced features require C++ DLL modding** - See [Advanced Modding Guide](docs/ADVANCED_MODDING.md)
+
+## 🚛 Your Mods
+
+See [YOUR_MODS_SUMMARY.md](YOUR_MODS_SUMMARY.md) for details on the three mods you want to create:
+1. Driver ID in Names (✅ Standard modding - ready to start)
+2. Ticker Logging (⚠️ Requires C++ DLL)
+3. Automated Training Plans (⚠️ Requires C++ DLL)
 
 ## Repository Structure
 
@@ -30,9 +40,13 @@ ETS2GameMods/
 │   ├── example_mod/         # Full template with all folders
 │   ├── simple_sound_mod/    # Minimal sound mod example
 │   ├── truck_skin_mod/      # Truck skin example with definitions
+│   ├── driver_id_names/     # Add driver IDs to names (standard mod)
+│   ├── ticker_logger_cpp/   # Log ticker messages (C++ DLL - advanced)
+│   ├── automated_training_cpp/  # Auto training plans (C++ DLL - advanced)
 │   └── json_comparison_example/  # SII vs JSON comparison (educational)
 ├── scripts/                 # 🔧 Build scripts
-│   └── build.sh             # Package mods into .scs files
+│   ├── build.ps1            # PowerShell build script (Windows)
+│   └── build.sh             # Bash build script (Linux/macOS)
 └── dist/                    # 📦 Built .scs files (gitignored)
 ```
 
@@ -43,6 +57,9 @@ ETS2GameMods/
 | `example_mod` | Template | Full | Complete folder structure template |
 | `simple_sound_mod` | Sound | Minimal | Shows bare minimum for sound mods |
 | `truck_skin_mod` | Vehicle | Medium | Truck skin with definition files |
+| `driver_id_names` | Driver Management | Medium | Add driver IDs to names in ticker |
+| `ticker_logger_cpp` | Advanced | Hard | Log ticker messages (C++ DLL) |
+| `automated_training_cpp` | Advanced | Hard | Auto training plans (C++ DLL) |
 | `json_comparison_example` | Educational | N/A | Compare SII format to JSON |
 
 ## Creating a New Mod
@@ -73,13 +90,21 @@ ETS2GameMods/
 
 The build script packages your mods into `.scs` files that can be used with ETS2.
 
-### Build all mods:
-```bash
-./scripts/build.sh
+### Windows (PowerShell):
+```powershell
+# Build all mods
+.\scripts\build.ps1
+
+# Build a specific mod
+.\scripts\build.ps1 -ModName my_awesome_mod
 ```
 
-### Build a specific mod:
+### Linux/macOS (Bash):
 ```bash
+# Build all mods
+./scripts/build.sh
+
+# Build a specific mod
 ./scripts/build.sh my_awesome_mod
 ```
 

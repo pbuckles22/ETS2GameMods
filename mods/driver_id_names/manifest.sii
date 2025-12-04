@@ -1,0 +1,15 @@
+SiiNunit
+{
+    mod_package : .driver_id_names
+    {
+        package_version: "1.0.0"
+        display_name: "Driver ID in Names"
+        author: "Your Name"
+        category[]: "other"
+        description_file: "desc.txt"
+        compatible_versions[]: "1.50.*"
+        compatible_versions[]: "1.51.*"
+        compatible_versions[]: "1.52.*"
+    }
+}
+

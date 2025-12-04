@@ -1,0 +1,78 @@
+# EXAMPLE FILE - This shows what driver_names.sii looks like
+# This is NOT a real file - just for reference!
+
+# ============================================================
+# BEFORE MODIFICATION (Original game file)
+# ============================================================
+SiiNunit
+{
+    driver_names : .driver.names
+    {
+        # Array index 0 = Driver ID 0
+        name[0]: "Felix"
+        
+        # Array index 1 = Driver ID 1
+        name[1]: "John D."
+        
+        # Array index 2 = Driver ID 2
+        name[2]: "Jane S."
+        
+        # Array index 152 = Driver ID 152
+        name[152]: "Mike T."
+        
+        # Array index 153 = Driver ID 153
+        name[153]: "John D."  # ← This is a duplicate! Same name as index 1
+        
+        # ... hundreds more entries ...
+        name[500]: "Sarah L."
+    }
+}
+
+# ============================================================
+# AFTER MODIFICATION (What our script creates)
+# ============================================================
+SiiNunit
+{
+    driver_names : .driver.names
+    {
+        # Driver ID 0 now shows: "0 - Felix"
+        name[0]: "0 - Felix"
+        
+        # Driver ID 1 now shows: "1 - John D."
+        name[1]: "1 - John D."
+        
+        # Driver ID 2 now shows: "2 - Jane S."
+        name[2]: "2 - Jane S."
+        
+        # Driver ID 152 now shows: "152 - Mike T."
+        name[152]: "152 - Mike T."
+        
+        # Driver ID 153 now shows: "153 - John D." ← No longer a duplicate!
+        # Even though the base name is the same, the ID makes it unique
+        name[153]: "153 - John D."
+        
+        # ... hundreds more entries ...
+        name[500]: "500 - Sarah L."
+    }
+}
+
+# ============================================================
+# HOW IT WORKS IN GAME
+# ============================================================
+#
+# When you hire a driver:
+#   1. Game assigns them Driver ID 152
+#   2. Game looks up name[152] in driver_names.sii
+#   3. Finds: name[152]: "152 - Mike T."
+#   4. Displays: "152 - Mike T." everywhere
+#
+# When driver #152 levels up:
+#   Ticker shows: "152 - Mike T. leveled up!"
+#   You know exactly which driver it is!
+#
+# When you have 260 drivers:
+#   - Driver ID 0 shows: "0 - Felix"
+#   - Driver ID 152 shows: "152 - Mike T."
+#   - Driver ID 153 shows: "153 - John D."
+#   - All unique, no confusion!
+
