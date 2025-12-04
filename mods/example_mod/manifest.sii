@@ -7,7 +7,7 @@ SiiNunit
         author: "Your Name"
         category[]: "other"
         description_file: "desc.txt"
-        icon: "icon.jpg"
+        # icon: "icon.jpg"  # Uncomment and add icon.jpg (276x162 pixels) to enable
         compatible_versions[]: "1.48.*"
         compatible_versions[]: "1.49.*"
         compatible_versions[]: "1.50.*"

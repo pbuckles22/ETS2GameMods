@@ -27,8 +27,8 @@ build_mod() {
     echo "Building mod: $mod_name"
     
     # Create .scs file (which is just a zip file with .scs extension)
-    cd "$mod_dir"
-    zip -r "$output_file" . -x "*.gitkeep"
+    # Use subshell to avoid changing the working directory of the main script
+    (cd "$mod_dir" && zip -r "$output_file" . -x "*.gitkeep")
     
     echo "Created: $output_file"
 }
