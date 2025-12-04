@@ -1,0 +1,14 @@
+SiiNunit
+{
+    mod_package : .json_comparison_example
+    {
+        package_version: "1.0.0"
+        display_name: "JSON vs SII Comparison"
+        author: "Your Name"
+        category[]: "other"
+        description_file: "desc.txt"
+        compatible_versions[]: "1.50.*"
+        compatible_versions[]: "1.51.*"
+        compatible_versions[]: "1.52.*"
+    }
+}

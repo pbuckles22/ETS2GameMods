@@ -1,0 +1,11 @@
+# Texture Placeholder
+# 
+# In a real mod, this folder would contain:
+# - DDS texture files for the truck skin
+# - Files named according to the truck model's template
+#
+# To create textures:
+# 1. Download truck template from SCS Modding Wiki
+# 2. Edit in GIMP (with DDS plugin) or Photoshop
+# 3. Save as DDS with DXT5 compression
+# 4. Name according to template specifications

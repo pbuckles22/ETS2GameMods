@@ -1,0 +1,41 @@
+{
+    "_comment": "JSON FORMAT (NOT USED BY ETS2 - educational only)",
+    "_warning": "DO NOT use this file with the game!",
+    
+    "objects": [
+        {
+            "_type": "mod_package",
+            "_name": ".my_mod",
+            
+            "package_version": "1.0.0",
+            "display_name": "My Mod Name",
+            "author": "Author Name",
+            
+            "category": ["truck", "sound"],
+            
+            "unlock_level": 0,
+            "price": 5000,
+            
+            "enabled": true,
+            
+            "base_color": {
+                "r": 1.0,
+                "g": 0.0,
+                "b": 0.0
+            },
+            
+            "description_file": "desc.txt",
+            "icon": "icon.jpg",
+            
+            "compatible_versions": ["1.50.*", "1.51.*"]
+        },
+        {
+            "_type": "accessory_paint_job_data",
+            "_name": "my_paint.truck.paint_job",
+            
+            "name": "Custom Paint",
+            "price": 15000,
+            "suitable_for": ["volvo.fh16"]
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+Custom Truck Skin Mod
+=====================
+
+An example truck skin mod with proper structure for vehicle textures.
+
+This mod includes:
+- def/ folder for skin definitions
+- vehicle/ folder for texture files
+
+How to Create Your Own Skin:
+1. Get the truck template from SCS Modding Wiki
+2. Edit in GIMP/Photoshop (save as DDS format)
+3. Place in vehicle/truck/upgrade/paintjob/
+4. Create definition in def/vehicle/truck/
+
+Installation:
+1. Build with: ./scripts/build.sh truck_skin_mod
+2. Copy to Documents/Euro Truck Simulator 2/mod/
+3. Enable in Mod Manager
+4. Find the skin in truck customization
+
+Version: 1.0.0
+Author: Your Name

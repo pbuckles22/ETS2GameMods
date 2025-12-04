@@ -1,0 +1,43 @@
+# Example Paint Job Definition for Truck Skin Mod
+# 
+# This file shows the SII format for defining a paint job.
+# Replace with your actual truck model name.
+#
+# Common truck identifiers (find more at SCS Modding Wiki):
+# - volvo.fh16, volvo.fh16_2012
+# - scania.r, scania.s
+# - mercedes.actros, mercedes.new_actros
+# - man.tgx, man.tgx_euro6
+# - daf.xf, daf.xf_euro6
+# - renault.magnum, renault.t
+# - iveco.stralis, iveco.hiway
+
+SiiNunit
+{
+    # Paint job definition
+    # Format: accessory_paint_job_data : unique_id.truck_type.paint_job
+    accessory_paint_job_data : custom_skin.volvo.fh16.paint_job
+    {
+        # Display name in game
+        name: "Custom Red Skin"
+        
+        # Price in game currency
+        price: 15000
+        
+        # Unlock level (0 = available immediately)
+        unlock: 0
+        
+        # Base color (RGB, values 0.0 to 1.0)
+        # Red
+        base_color: (1.0, 0.0, 0.0)
+        
+        # Flip color (paint that changes with viewing angle)
+        # Dark red
+        flip_color: (0.5, 0.0, 0.0)
+        
+        # Which trucks this skin works with
+        # See list above for common identifiers
+        suitable_for[]: "volvo.fh16"
+        suitable_for[]: "volvo.fh16_2012"
+    }
+}

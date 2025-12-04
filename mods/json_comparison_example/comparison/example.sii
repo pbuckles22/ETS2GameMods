@@ -1,0 +1,44 @@
+# SII FORMAT (REAL - used by ETS2)
+# This is the actual format the game understands
+
+SiiNunit
+{
+    # Object definition: type : name { properties }
+    mod_package : .my_mod
+    {
+        # String values use quotes
+        package_version: "1.0.0"
+        display_name: "My Mod Name"
+        author: "Author Name"
+        
+        # Arrays use repeated property names with []
+        category[]: "truck"
+        category[]: "sound"
+        
+        # Numbers don't need quotes
+        unlock_level: 0
+        price: 5000
+        
+        # Booleans
+        enabled: true
+        
+        # Vectors for colors (RGB)
+        base_color: (1.0, 0.0, 0.0)
+        
+        # References to files
+        description_file: "desc.txt"
+        icon: "icon.jpg"
+        
+        # Wildcards in versions
+        compatible_versions[]: "1.50.*"
+        compatible_versions[]: "1.51.*"
+    }
+    
+    # Multiple objects in one file
+    accessory_paint_job_data : my_paint.truck.paint_job
+    {
+        name: "Custom Paint"
+        price: 15000
+        suitable_for[]: "volvo.fh16"
+    }
+}

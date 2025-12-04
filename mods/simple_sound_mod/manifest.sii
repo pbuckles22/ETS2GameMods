@@ -1,0 +1,14 @@
+SiiNunit
+{
+    mod_package : .simple_sound_mod
+    {
+        package_version: "1.0.0"
+        display_name: "Simple Sound Mod"
+        author: "Your Name"
+        category[]: "sound"
+        description_file: "desc.txt"
+        compatible_versions[]: "1.50.*"
+        compatible_versions[]: "1.51.*"
+        compatible_versions[]: "1.52.*"
+    }
+}

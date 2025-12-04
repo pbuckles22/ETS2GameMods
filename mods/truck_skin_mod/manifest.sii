@@ -1,0 +1,14 @@
+SiiNunit
+{
+    mod_package : .truck_skin_mod
+    {
+        package_version: "1.0.0"
+        display_name: "Custom Truck Skin"
+        author: "Your Name"
+        category[]: "truck"
+        description_file: "desc.txt"
+        compatible_versions[]: "1.50.*"
+        compatible_versions[]: "1.51.*"
+        compatible_versions[]: "1.52.*"
+    }
+}
