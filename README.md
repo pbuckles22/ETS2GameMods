@@ -2,27 +2,48 @@
 
 A repository for creating and managing Euro Truck Simulator 2 mods.
 
+## 📚 Documentation
+
+| Document | Description |
+|----------|-------------|
+| [Getting Started](docs/GETTING_STARTED.md) | Overview, file formats, and testing philosophy |
+| [Step-by-Step Guide](docs/STEP_BY_STEP_GUIDE.md) | Create your first mod with detailed instructions |
+| [SII Format Reference](docs/SII_FORMAT_REFERENCE.md) | Complete SII syntax and examples |
+| [Testing Guide](docs/TESTING_GUIDE.md) | How to test mods (spoiler: in-game testing required!) |
+
+## 🎮 Quick Facts
+
+- **No C++ or traditional programming required!** ETS2 uses SII format (text-based config)
+- **Testing is done in-game** - TDD doesn't apply to ETS2 modding
+- **You only need folders for your content type** - Simple mods need minimal structure
+
 ## Repository Structure
 
 ```
 ETS2GameMods/
-├── mods/                    # All mods live here
-│   ├── example_mod/         # Example mod with template structure
-│   │   ├── manifest.sii     # Required: Mod metadata
-│   │   ├── desc.txt         # Required: Mod description
-│   │   ├── icon.jpg         # Optional: Mod icon (276x162 pixels)
-│   │   ├── def/             # Definition files (.sii)
-│   │   ├── sound/           # Sound files
-│   │   │   └── music/       # Music files (.ogg)
-│   │   ├── vehicle/         # Vehicle skins and parts
-│   │   ├── material/        # Material files (.mat)
-│   │   ├── model/           # 3D model files (.pmd, .pmg)
-│   │   └── ui/              # UI elements
-│   └── your_mod/            # Add your mods here!
-├── scripts/                 # Build scripts
+├── docs/                    # 📚 Documentation
+│   ├── GETTING_STARTED.md   # Start here!
+│   ├── STEP_BY_STEP_GUIDE.md
+│   ├── SII_FORMAT_REFERENCE.md
+│   └── TESTING_GUIDE.md
+├── mods/                    # 🎮 All mods live here
+│   ├── example_mod/         # Full template with all folders
+│   ├── simple_sound_mod/    # Minimal sound mod example
+│   ├── truck_skin_mod/      # Truck skin example with definitions
+│   └── json_comparison_example/  # SII vs JSON comparison (educational)
+├── scripts/                 # 🔧 Build scripts
 │   └── build.sh             # Package mods into .scs files
-└── dist/                    # Built .scs files (gitignored)
+└── dist/                    # 📦 Built .scs files (gitignored)
 ```
+
+## Example Mods
+
+| Mod | Type | Complexity | Purpose |
+|-----|------|------------|---------|
+| `example_mod` | Template | Full | Complete folder structure template |
+| `simple_sound_mod` | Sound | Minimal | Shows bare minimum for sound mods |
+| `truck_skin_mod` | Vehicle | Medium | Truck skin with definition files |
+| `json_comparison_example` | Educational | N/A | Compare SII format to JSON |
 
 ## Creating a New Mod
 
@@ -101,7 +122,10 @@ Available categories for `manifest.sii`:
 
 | Mod Name | Description | Version |
 |----------|-------------|---------|
-| example_mod | Template mod for reference | 1.0.0 |
+| example_mod | Full template with all folder types | 1.0.0 |
+| simple_sound_mod | Minimal sound mod template | 1.0.0 |
+| truck_skin_mod | Truck skin with paint job definition | 1.0.0 |
+| json_comparison_example | Educational: SII vs JSON comparison | 1.0.0 |
 
 *Add your mods to this table as you create them!*
 

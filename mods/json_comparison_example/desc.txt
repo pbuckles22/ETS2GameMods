@@ -1,0 +1,27 @@
+JSON vs SII Format Comparison
+==============================
+
+This is an EDUCATIONAL example showing the difference between
+JSON format (common in web development) and SII format (used by ETS2).
+
+IMPORTANT: ETS2 does NOT accept JSON files!
+
+This example includes:
+- manifest.sii (actual format used by game)
+- manifest_comparison.json (for educational comparison only)
+
+See the comparison/ folder for side-by-side examples.
+
+Why SII and not JSON?
+- SII is SCS Software's proprietary format
+- Predates modern JSON standards in gaming
+- Optimized for their game engine
+- Supports features like includes and tokens
+
+If you're familiar with JSON, you'll find SII quite similar:
+- Both have key-value pairs
+- Both support nested structures
+- Both are text-based
+- Main differences: syntax and comment support
+
+Version: 1.0.0

@@ -1,0 +1,24 @@
+Simple Sound Mod
+================
+
+A minimal example showing the bare minimum needed for a sound mod.
+
+This mod demonstrates that you DON'T need all the folders - 
+just the ones relevant to your content type.
+
+Features:
+- Minimal file structure
+- Only required files included
+- Sound-specific category
+
+Installation:
+1. Build with: ./scripts/build.sh simple_sound_mod
+2. Copy dist/simple_sound_mod.scs to Documents/Euro Truck Simulator 2/mod/
+3. Enable in Mod Manager
+
+To add your music:
+1. Create a sound/music/ folder
+2. Add your .ogg files
+
+Version: 1.0.0
+Author: Your Name
