@@ -1,0 +1,30 @@
+SiiNunit
+{
+
+driver_names : .driver.names
+{
+	# When adding new driver with index X,
+	# make sure there is a corresponding material in /material/ui/driver/X.mat.
+	# Prefix female names with +.
+
+	name[00]: "00 - Bronislaw E."
+	name[01]: "01 - Ian P."
+	name[02]: "02 - Cameron S."
+	name[03]: "03 - Richard O."
+	name[04]: "04 - Manuel J."
+	name[05]: "05 - Henry K."
+	name[06]: "06 - Brandon L."
+	name[07]: "07 - Ludovic S."
+	name[08]: "08 - John M."
+	name[09]: "09 - Bob S."
+	name[10]: "+10 - Sophie I."
+	name[11]: "+11 - Katie W."
+	name[12]: "+12 - Georgia A."
+	name[13]: "+13 - Sabrina C."
+	name[14]: "+14 - Melanie Q."
+	name[15]: "+15 - Emily Z."
+	name[16]: "+16 - Scarlett J."
+	name[17]: "17 - Frank N."
+	name[18]: "+18 - Tina T."
+	name[19]: "+19 - Marianne G."
+	name[20]: "+20 - Reece S."

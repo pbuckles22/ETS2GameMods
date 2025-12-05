@@ -1,0 +1,27 @@
+Driver ID in Names Mod
+=======================
+
+Adds unique driver IDs to driver names in ticker notifications and driver management screens.
+
+Features:
+- Prepends driver ID to names (e.g., "152 - Felix")
+- Makes it easier to track which of your 260 AI drivers leveled up
+- Prevents duplicate names - each driver ID is unique
+- Works automatically with existing and new drivers
+- No save file editing needed - updates happen instantly
+
+How It Works:
+The Driver ID is the array index in driver_names.sii. By modifying name[152]: "Felix" 
+to name[152]: "152 - Felix", every driver with ID 152 will show "152 - Felix" everywhere.
+
+Installation:
+1. Copy the .scs file to Documents/Euro Truck Simulator 2/mod/
+2. Enable the mod in the game's Mod Manager
+3. Load your save game - all 260 drivers update immediately!
+
+Note: This mod modifies the driver_names.sii file. All drivers (existing and future) 
+will have IDs prepended to their names. Each ID is unique, so no duplicates possible.
+
+Version History:
+- 1.0.0: Initial release (using driver_names.sii approach)
+

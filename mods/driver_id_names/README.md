@@ -20,11 +20,23 @@ ETS2 uses a **single file** (`driver_names.sii`) that contains an array of all d
 
 ✅ **Each array index is unique** - There can only be one `name[0]`, one `name[152]`, etc.
 
-✅ **No name recycling** - "John D" can only appear once (at one specific index)
+✅ **IDs make names unique** - Even if "John D." appears at both `name[1]` and `name[153]`, they become "1 - John D." and "153 - John D." - completely unique!
 
 ✅ **Automatic for new hires** - When you hire a new driver, they get assigned an ID (e.g., 152), and the game automatically looks up `name[152]` from your modded file
 
 ✅ **Works retroactively** - Your existing 260 drivers will instantly update because the game reads the name from the array index, not from saved data
+
+### What Happens If You Have More Drivers Than Names?
+
+If your `driver_names.sii` has 354 names (indices 0-353) and you hire driver #354:
+
+- **The game will wrap around** - Driver 354 will likely use `name[0]` again (or use modulo: `name[354 % 354] = name[0]`)
+- **But the ID still makes it unique!** - Driver 0 shows "0 - Felix", Driver 354 shows "0 - Felix" (same name, but different IDs)
+- **With IDs added**: Driver 0 = "0 - Felix", Driver 354 = "0 - Felix" - wait, that's still a problem!
+
+**Solution**: The file typically has entries beyond what you see. Check if your file has entries like `name[500]` or higher. If not, you may need to extend the file or the game will reuse names, but the **Driver ID will still be unique** (Driver 0 vs Driver 354 are different drivers, even if they show the same name).
+
+**Important**: The Driver ID (0, 354, etc.) is what matters - that's what's saved in your save file. The name is just for display. So even if two drivers show the same name, they have different IDs and are tracked separately by the game.
 
 ## File Structure
 

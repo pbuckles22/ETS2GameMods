@@ -40,11 +40,32 @@ def modify_driver_names_file(input_file, output_file, format_string="{index} - {
             current_name = match.group(2)
             
             # Check if ID is already prepended (avoid double-processing)
+            # But also check if it needs fixing (e.g., "247 - +Žaneta" should be "+247 - Žaneta")
             if re.match(r'^\d+\s*-\s*', current_name) or re.match(r'^\[\d+\]', current_name):
-                return match.group(0)  # Already has ID, don't modify
+                # Already has ID, but check if "+" is in wrong position
+                # Pattern: "247 - +Žaneta" should become "+247 - Žaneta"
+                if re.match(r'^\d+\s*-\s*\+', current_name):
+                    # Fix: move "+" to before ID
+                    parts = current_name.split(' - +', 1)
+                    if len(parts) == 2:
+                        id_part = parts[0]  # "247"
+                        name_part = parts[1]  # "Žaneta Č."
+                        return f'name[{index}]: "+{id_part} - {name_part}"'
+                return match.group(0)  # Already has ID in correct format, don't modify
             
-            # Format the new name
-            new_name = format_string.format(index=index, name=current_name)
+            # Handle female names: "+" prefix must stay at the start for game recognition
+            # But we want to hide it in the display
+            # Solution: Put "+" before the ID, so game sees "+" at start: "+247 - Žaneta"
+            has_female_prefix = current_name.startswith('+')
+            if has_female_prefix:
+                # Remove "+" from name for display, but add it before the ID
+                # Format: "+247 - Žaneta Č." (game sees "+" at start, user sees "247 - Žaneta")
+                name_without_plus = current_name[1:]  # Remove "+" from name
+                new_name = f"+{index} - {name_without_plus}"
+            else:
+                # Regular name: "153 - M. T. Cougar"
+                new_name = format_string.format(index=index, name=current_name)
+            
             return f'name[{index}]: "{new_name}"'
         
         modified_content = re.sub(pattern, replace_name, content)

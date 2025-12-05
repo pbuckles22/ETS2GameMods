@@ -1,0 +1,15 @@
+00:00:11.362 : [zipfs] driver_id_names.scs: Created, 4 entries
+00:00:11.374 : <ERROR> [fs] Failed to open file '/manifest.sii' in the read_only mode.
+00:00:11.374 : <ERROR> [unit] File '<MISSING><UFS>/manifest.sii', line 3:
+00:00:11.374 : <ERROR> [unit] The unit name 'mod.driver_id_names.package' is in wrong format.
+00:00:11.374 : <ERROR> load_unit_tree() - Failed to load unit tree from file (/manifest.sii)
+00:00:42.398 : [zipfs] driver_id_names.scs: Unmounted
+00:00:49.519 : [zipfs] driver_id_names.scs: Created, 4 entries
+00:00:49.528 : <ERROR> [fs] Failed to open file '/manifest.sii' in the read_only mode.
+00:00:49.528 : <ERROR> [unit] File '<MISSING><UFS>/manifest.sii', line 3:
+00:00:49.528 : <ERROR> [unit] The unit name 'mod.driver_id_names.package' is in wrong format.
+00:00:49.529 : <ERROR> load_unit_tree() - Failed to load unit tree from file (/manifest.sii)
+00:00:54.948 : [zipfs] driver_id_names.scs: Unmounted
+00:00:57.611 : [mods] Active local mod driver_id_names (name: driver_id_names, version: , author: )
+00:00:57.632 : [zipfs] driver_id_names.scs: Created, 4 entries
+00:00:57.637 : <ERROR> [fs] Failed to open file '/manifest.sii' in the read_only mode.
