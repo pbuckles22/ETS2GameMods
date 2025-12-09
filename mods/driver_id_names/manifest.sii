@@ -1,6 +1,6 @@
 SiiNunit
 {
-mod_package : mod.driver_id_names.package {
+mod_package : .driver_id_names {
 	package_version: "1.0"
 	display_name: "Driver ID in Names"
 	author: "Your Name"
