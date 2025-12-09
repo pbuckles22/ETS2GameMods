@@ -2,7 +2,9 @@
 
 ## The Truth About .scs Files
 
-**Important**: `.scs` files are **just ZIP files with a different extension**. You don't need a special "SCS Extractor" - any ZIP tool works!
+**Important**: Most `.scs` files (like `def.scs`, `base.scs`) are **ZIP files with a different extension**. However, some files like `locale.scs` use SCS's proprietary hashfs format and require specialized tools.
+
+**Good News**: `driver_names.sii` is a **generic file** - it's the same for all players! If extraction is difficult, you can use a file from another player or the modding community.
 
 ## Why the Confusion?
 
@@ -29,22 +31,35 @@ Many guides mention "SCS Extractor" as if it's a special tool, but:
    - Download the installer for your system
    - Install it (takes 1 minute)
 
-2. **Locate def.scs**:
-   - Usually: `Steam/steamapps/common/Euro Truck Simulator 2/def.scs`
-   - Or: `C:\Program Files (x86)\Steam\steamapps\common\Euro Truck Simulator 2\def.scs`
+2. **Locate the .scs files**:
+   - Usually: `Steam/steamapps/common/Euro Truck Simulator 2/`
+   - Or: `C:\Program Files (x86)\Steam\steamapps\common\Euro Truck Simulator 2\`
+   - You may need to extract **both** `def.scs` and `locale.scs`
 
 3. **Extract**:
    - **Option A**: Right-click `def.scs` → "7-Zip" → "Extract to def\"
-   - **Option B**: Open 7-Zip, navigate to `def.scs`, click "Extract"
-   - **Option C**: Drag `def.scs` into 7-Zip window, then extract
+   - **Option B**: Right-click `locale.scs` → "7-Zip" → "Extract to locale\"
+   - **Option C**: Open 7-Zip, navigate to the `.scs` file, click "Extract"
+   - **Option D**: Drag `.scs` file into 7-Zip window, then extract
 
 4. **Find driver_names.sii**:
-   - Navigate to: `def/locale/en_us/driver_names.sii`
+   - Check **first**: `locale/en_us/driver_names.sii` (if you extracted `locale.scs`)
+   - Check **also**: `def/locale/en_us/driver_names.sii` (if you extracted `def.scs`)
    - (Or `locale/de_de/` for German, etc.)
 
 ### Verification
 
-After extraction, you should have:
+After extraction, you should have one of these structures:
+
+**If extracted from locale.scs:**
+```
+extracted/
+└── locale/
+    └── en_us/
+        └── driver_names.sii  ← This is what we need!
+```
+
+**If extracted from def.scs:**
 ```
 extracted/
 └── def/
@@ -52,6 +67,8 @@ extracted/
         └── en_us/
             └── driver_names.sii  ← This is what we need!
 ```
+
+**Note**: In newer ETS2 versions, `driver_names.sii` is often in `locale.scs` rather than `def.scs`.
 
 ---
 
@@ -83,7 +100,7 @@ If you have WinRAR installed:
 
 ### Method 4: Python Script (For Programmers)
 
-If you prefer command line:
+If you prefer command line (works for ZIP-based .scs files only):
 
 ```python
 import zipfile
@@ -103,6 +120,64 @@ Save as `extract_scs.py` and run:
 ```powershell
 python extract_scs.py
 ```
+
+**Note**: This only works for ZIP-based .scs files. For `locale.scs` (hashfs format), use SXC Extractor (see Method 5).
+
+---
+
+### Method 5: SXC Extractor (For locale.scs and hashfs files)
+
+**When to use**: When `locale.scs` cannot be extracted with standard tools.
+
+1. **Download SXC Extractor**:
+   - Search for "SXC Extractor ETS2" on modding sites
+   - Example: https://ets2mods.lt/euro-truck-simulator-2-mods/ets2-others/sxc-extractor-mod-file-extraction-tool-v1-23-2-14/
+
+2. **Extract locale.scs**:
+   ```powershell
+   sxc_extractor.exe "C:\Path\To\locale.scs" -d "C:\Path\To\Output\Folder"
+   ```
+
+3. **Find driver_names.sii**:
+   - Look in: `locale/en_us/driver_names.sii`
+
+**Why needed**: `locale.scs` uses SCS's hashfs format, which standard ZIP tools cannot handle.
+
+---
+
+### Method 6: Use a Generic File from Another Player (Easiest Alternative!)
+
+**When to use**: When extraction is difficult or you can't extract `locale.scs`.
+
+✅ **Good news**: `driver_names.sii` is a **generic master list** - it's the same for all players!
+
+**The file is NOT player-specific**:
+- It's the game's master list of possible driver names
+- Everyone with the same game version and locale has the same file
+- Your save file stores Driver IDs (indices), not the names themselves
+- The game looks up names dynamically from this file
+
+**Steps**:
+1. Get `driver_names.sii` from:
+   - Another player who has extracted it
+   - ETS2 modding communities/forums
+   - Modding Discord servers
+   - Or ask in modding forums
+
+2. **Important**: Make sure it matches your locale:
+   - `en_us` for US English
+   - `de_de` for German
+   - `fr_fr` for French
+   - etc.
+
+3. Place it in a temporary location (e.g., `extracted/driver_names.sii`)
+
+4. Run the modification script:
+   ```powershell
+   python scripts/add_driver_ids.py extracted/driver_names.sii mods/driver_id_names/universal/locale/en_us/driver_names.sii
+   ```
+
+**Why this works**: The file is identical for all players (same version/locale), so you don't need YOUR specific file - any player's file will work perfectly!
 
 ---
 
@@ -168,9 +243,32 @@ SCS Software may provide official tools:
 ### "Can't find driver_names.sii"
 
 **Solution**:
+- **The file might be in `locale.scs`, not `def.scs`!** Try extracting `locale.scs` as well
 - Make sure you extracted the entire `def.scs` file
 - Check the locale folder matches your game language
-- Look in: `def/locale/en_us/` (or your locale)
+- Look in: `def/locale/en_us/` or `locale/en_us/` (or your locale)
+- If using `scs_extractor` and it fails on `locale.scs`, use 7-Zip instead (see below)
+
+### "Root directory not found" error when extracting locale.scs
+
+**This error means**: `locale.scs` uses SCS's hashfs format, not a standard ZIP. Neither `scs_extractor` nor 7-Zip can extract it directly.
+
+**Solution**: Use **SXC Extractor** (specialized tool for ETS2/ATS files):
+
+1. **Download SXC Extractor**:
+   - Available from ETS2 modding sites (search for "SXC Extractor ETS2")
+   - Example: https://ets2mods.lt/euro-truck-simulator-2-mods/ets2-others/sxc-extractor-mod-file-extraction-tool-v1-23-2-14/
+   - This tool is specifically designed for ETS2/ATS hashfs archives
+
+2. **Extract locale.scs**:
+   ```powershell
+   sxc_extractor.exe "C:\Path\To\locale.scs" -d "C:\Path\To\Output\Folder"
+   ```
+
+3. **Find driver_names.sii**:
+   - Look in: `locale/en_us/driver_names.sii` (or your locale)
+
+**Why this happens**: `locale.scs` uses SCS's proprietary hashfs format, which requires specialized tools. Standard ZIP extractors (7-Zip, WinRAR) and some `scs_extractor` versions cannot handle this format.
 
 ### "Multiple extractors, which one?"
 
@@ -182,11 +280,12 @@ SCS Software may provide official tools:
 
 | Tool | Pros | Cons | Recommendation |
 |------|------|------|----------------|
-| **7-Zip** | Free, reliable, works everywhere | None really | ✅ **Use this!** |
-| Windows Built-in | No installation | Requires renaming | ✅ Good alternative |
-| WinRAR | Works well | Paid (free trial) | ✅ If you have it |
-| Python script | Programmatic | Requires Python | ✅ If you're comfortable |
-| "SCS Extractor" tools | ETS2-specific | May be outdated | ⚠️ Not necessary |
+| **7-Zip** | Free, reliable, works for ZIP-based .scs | Doesn't work for hashfs files | ✅ **Use for def.scs, base.scs** |
+| **SXC Extractor** | Handles hashfs format (locale.scs) | Requires download | ✅ **Use for locale.scs** |
+| Windows Built-in | No installation | Requires renaming, doesn't work for hashfs | ✅ Good alternative for ZIP-based files |
+| WinRAR | Works well | Paid (free trial), doesn't work for hashfs | ✅ If you have it |
+| Python script | Programmatic | Requires Python, doesn't work for hashfs | ✅ If you're comfortable |
+| "scs_extractor" | ETS2-specific | May not support all formats | ⚠️ May fail on locale.scs |
 
 ---
 

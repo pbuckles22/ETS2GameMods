@@ -45,16 +45,51 @@ function Build-Mod {
         Remove-Item $tempZip -Force
     }
     
-    # Get all files in mod directory, excluding .gitkeep files
-    $files = Get-ChildItem -Path $ModDir -Recurse -File | Where-Object { $_.Name -ne ".gitkeep" }
+    # Get all files in mod directory, excluding documentation and example files
+    # Only include: manifest.sii, desc.txt, and files in universal/ directory
+    $files = Get-ChildItem -Path $ModDir -Recurse -File | Where-Object {
+        # Exclude .gitkeep files
+        if ($_.Name -eq ".gitkeep") { return $false }
+        
+        # Exclude all .md files (documentation)
+        if ($_.Extension -eq ".md") { return $false }
+        
+        # Exclude EXAMPLE_*.sii files (example/documentation files)
+        if ($_.Name -like "EXAMPLE_*") { return $false }
+        
+        # Exclude incorrect paths (def/ and locale/ at root - these are wrong for mods)
+        $relativePath = [System.IO.Path]::GetRelativePath($ModDir, $_.FullName)
+        # Normalize path separators for comparison (handle both \ and /)
+        $normalizedPath = $relativePath.Replace('\', '/')
+        if ($normalizedPath -like "def/*" -or $normalizedPath -like "locale/*") {
+            return $false
+        }
+        
+        # Include everything else (manifest.sii, desc.txt, universal/ files, etc.)
+        return $true
+    }
     
     if ($files.Count -eq 0) {
         Write-Warning "No files found in $modName"
         return
     }
     
-    # Create zip file
-    Compress-Archive -Path $files.FullName -DestinationPath $tempZip -CompressionLevel Optimal
+    Write-Host "Found $($files.Count) file(s) to include"
+    
+    # Create zip file preserving directory structure
+    # We need to use .NET ZipFile class to preserve paths relative to mod directory
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $zip = [System.IO.Compression.ZipFile]::Open($tempZip, [System.IO.Compression.ZipArchiveMode]::Create)
+    
+    foreach ($file in $files) {
+        # Get relative path from mod directory using PowerShell's built-in method
+        $relativePath = [System.IO.Path]::GetRelativePath($ModDir, $file.FullName)
+        # Normalize path separators for ZIP (use forward slashes)
+        $relativePath = $relativePath.Replace('\', '/')
+        [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $file.FullName, $relativePath)
+    }
+    
+    $zip.Dispose()
     
     # Rename to .scs
     Move-Item -Path $tempZip -Destination $outputFile -Force

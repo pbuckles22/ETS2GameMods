@@ -52,6 +52,11 @@ temp/
 ehthumbs.db
 Desktop.ini
 
+# Agent handoff files (troubleshooting packages for other AI agents/forums)
+AgentHandOffs/
+gemini/
+
+
 # Mod-specific: Don't commit actual game files
 # (Only commit the mod structure, not extracted content)
 # Uncomment if you extract game files to mod directories:
