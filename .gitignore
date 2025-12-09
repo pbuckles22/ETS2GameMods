@@ -9,6 +9,8 @@ extracted_*/
 
 # Built mod files (.scs files)
 *.scs
+# Exception: allow forum .scs for sharing
+!forum/driver_id_names.scs
 
 # OS generated files
 .DS_Store
